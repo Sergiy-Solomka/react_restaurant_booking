@@ -5,8 +5,8 @@ import interactionPlugin from '@fullcalendar/interaction'
 
 const events = [{ title: 'Meeting', start: new Date() }]
 export const Calendar = () => {
-  const handleDateClick = () => {
-    console.log('Clicked')
+  const handleDateClick = (e: any) => {
+    console.log(e.date)
   }
 
   return (
