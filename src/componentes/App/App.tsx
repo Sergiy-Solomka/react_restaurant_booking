@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.scss'
-import { Calendar } from './componentes/Calendar/Calendar'
+import { Calendar } from '../Calendar/Calendar'
 
 function App() {
   return (
