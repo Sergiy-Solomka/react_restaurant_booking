@@ -4,9 +4,10 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import './Calendar.scss'
 import { useNavigate } from "react-router-dom";
+import { ICalendarData } from "../../interfaces/interfaces";
 
-const events = [ {
-  //id: '123',
+const events :ICalendarData[] = [ {
+  id: '123',
   title: '25',
   start: '2023-04-03',
   allDay: true,
@@ -30,7 +31,6 @@ export const Calendar = () => {
       eventClick={handleEventClick}
       events={events}
       height={ '85vh' }
-      contentHeight ={'9999'}
       expandRows ={true}
       headerToolbar={{
         start: 'prev,next today',
