@@ -1,0 +1,12 @@
+import axios, { AxiosResponse } from "axios";
+import { API_MAP } from "./apiMap";
+
+export const getAllBookings = async () => {
+  try {
+    const response: AxiosResponse = await axios.get(API_MAP.allBookings)
+    return response.data
+  } catch (error) {
+    console.error(error)
+    return null
+  }
+}
