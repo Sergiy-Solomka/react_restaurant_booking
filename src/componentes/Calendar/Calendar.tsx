@@ -3,6 +3,7 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import './Calendar.scss'
+import { useNavigate } from "react-router-dom";
 
 const events = [ {
   //id: '123',
@@ -13,8 +14,12 @@ const events = [ {
   textColor: 'red',
 }]
 export const Calendar = () => {
+  const navigate = useNavigate();
   const handleDateClick = (e: any) => {
-    console.log(e.date)
+    navigate('/day',{state:e.date});
+  }
+  const handleEventClick = (e: any) => {
+    navigate('/day',{state:e.event._instance.range.start});
   }
 
   return (
@@ -22,6 +27,7 @@ export const Calendar = () => {
       plugins={[dayGridPlugin, interactionPlugin]}
       initialView='dayGridMonth'
       dateClick={handleDateClick}
+      eventClick={handleEventClick}
       events={events}
       height={ '85vh' }
       contentHeight ={'9999'}

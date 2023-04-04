@@ -10,6 +10,7 @@ export const Router =  () =>{
       <Route path="/day" element={<Day />} />
       {/*<Route path="/books/:id" element={<Book />} />*/}
       {/*<Route path="/books/new" element={<NewBook />} />*/}
+      {/*<Route path="*" element={<NotFound />} />*/}
     </Routes>
   </div>
 }
