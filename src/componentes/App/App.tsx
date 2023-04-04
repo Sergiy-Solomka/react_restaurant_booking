@@ -1,11 +1,11 @@
 import React from 'react'
 import './App.scss'
-import { Calendar } from '../Calendar/Calendar'
+import { Router } from "../../router/router";
 
 function App() {
   return (
     <div className='App'>
-      <Calendar />
+    < Router />
     </div>
   )
 }

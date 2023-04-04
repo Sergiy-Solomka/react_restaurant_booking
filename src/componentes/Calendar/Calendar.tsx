@@ -7,7 +7,7 @@ import './Calendar.scss'
 const events = [ {
   //id: '123',
   title: '25',
-  start: '2023-03-29',
+  start: '2023-04-03',
   allDay: true,
   color: 'transparent',
   textColor: 'red',
@@ -24,10 +24,12 @@ export const Calendar = () => {
       dateClick={handleDateClick}
       events={events}
       height={ '85vh' }
+      contentHeight ={'9999'}
+      expandRows ={true}
       headerToolbar={{
         start: 'prev,next today',
         center: 'title',
-        end: 'dayGridMonth,dayGridWeek'
+        end: 'dayGridMonth'
       }}
 
 
