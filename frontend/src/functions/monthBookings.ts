@@ -6,10 +6,11 @@ export function getCalendarData(bookings: IBookingsObj[] | undefined): ICalendar
       bookings.reduce<{ [key: string]: IResultOfMonth }>((acc, entry) => {
         const { date, amount } = entry;
         const key = date.trim();
+        const numAmount = parseInt(amount as string, 10) || 0;
         if (acc[key]) {
-          acc[key].totalAmount += amount;
+          acc[key].totalAmount += numAmount;
         } else {
-          acc[key] = { date, totalAmount: amount };
+          acc[key] = { date, totalAmount: numAmount };
         }
         return acc;
       }, {})

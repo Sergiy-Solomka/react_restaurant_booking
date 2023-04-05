@@ -13,7 +13,7 @@ export const EditBooking = () => {
     _id: '',
     date: '',
     time: '',
-    amount: 0,
+    amount: '',
     name: '',
     requests: '',
     contact: ''
@@ -21,9 +21,7 @@ export const EditBooking = () => {
   useEffect(() => {
     const fetchData = async (id:string) => {
       const data = await getOneBooking(id)
-      console.log(data);
       setData(data)
-      console.log(data);
 
     }
     fetchData(id).then()

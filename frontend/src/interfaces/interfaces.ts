@@ -12,7 +12,7 @@ export interface IBookingsObj {
   "_id": string,
   "date": string,
   "time": string,
-  "amount": number,
+  "amount": number | string,
   "name": string,
   "requests": string,
   "contact": string
