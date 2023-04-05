@@ -10,3 +10,13 @@ export const getAllBookings = async () => {
     return null
   }
 }
+
+export const getDayBookings = async () => {
+  try {
+    const response: AxiosResponse = await axios.get(API_MAP.dayBookings)
+    return response.data
+  } catch (error) {
+    console.error(error)
+    return null
+  }
+}
