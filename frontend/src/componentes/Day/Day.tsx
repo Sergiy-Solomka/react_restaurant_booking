@@ -40,7 +40,7 @@ export const Day = () => {
         {
           data
             ? data
-              .filter((book) => book.date === '4/3/2023')
+              .filter((book) => book.date === newDateString)
               .map((book) => (
                 <tr key={book._id}>
                   <td data-label="Date">{book.date}</td>

@@ -17,7 +17,7 @@ export function getCalendarData(bookings: IBookingsObj[] | undefined): ICalendar
     : [];
 
   const events: ICalendarData[] = monthBookings.map((item) => {
-    const [month, day, year] = item.date.split("/");
+    const [day,month,  year] = item.date.split("/");
     const start = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     return {
       title: item.totalAmount.toString(),
