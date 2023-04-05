@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import {  getOneBooking } from "../../api/apiCalls";
+import { getOneBooking, updateOneBooking } from "../../api/apiCalls";
 import { IBookingsObj } from "../../interfaces/interfaces";
 
 
@@ -25,10 +25,11 @@ export const EditBooking = () => {
 
     }
     fetchData(id).then()
-  }, [])
+  }, [id])
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    await updateOneBooking(data);
     console.log(data);
   }
 
