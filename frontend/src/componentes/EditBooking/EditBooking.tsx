@@ -15,7 +15,7 @@ export const EditBooking = () => {
       setData(data)
 
     }
-    fetchData(id).then(r => console.log(r))
+    fetchData(id).then()
   }, [])
 
 

@@ -11,7 +11,7 @@ export const Day = () => {
   const newDateString = dateStringForm(new Date(location.state))
 
   const editBooking = (id:string) => {
-    navigate('/edit/',{state:id});
+    navigate('/day/edit/',{state:id});
   }
 
   const [data, setData] = useState<IBookingsObj[]>()
@@ -20,10 +20,9 @@ export const Day = () => {
       const data = await getDayBookings()
       setData(data)
     }
-    fetchData().then(r => console.log(r))
+    fetchData().then()
   }, [])
 
-  console.log(data);
 
   return (<div>
       <nav className='day-navigation container'>

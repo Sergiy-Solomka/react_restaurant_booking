@@ -25,7 +25,7 @@ export const getOneBooking = async (id:string) => {
   // @ts-ignore
   try {
 
-    const response: AxiosResponse = await axios.get(`http://localhost:3001/bookings/${id}`)
+    const response: AxiosResponse = await axios.get(`${API_MAP.dayBookings}/${id}`)
     return response.data
   } catch (error) {
     console.error(error)

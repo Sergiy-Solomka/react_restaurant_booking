@@ -12,7 +12,7 @@ export const Router =  () =>{
     <Routes>
       <Route path="/" element={<Calendar />} />
       <Route path="/day" element={<Day />} />
-      <Route path="/edit/" element={<EditBooking />} />
+      <Route path="/day/edit/" element={<EditBooking />} />
       <Route path="/new" element={<NewBooking />} />
       {/*<Route path="*" element={<NotFound />} />*/}
     </Routes>

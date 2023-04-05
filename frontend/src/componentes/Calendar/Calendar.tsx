@@ -15,7 +15,7 @@ export const Calendar = () => {
       const data = await getAllBookings()
       setData(data)
     }
-    fetchData().then(r => console.log(r))
+    fetchData().then()
   }, [])
 
   const events = getCalendarData(data);
