@@ -15,8 +15,7 @@ export interface IBookingsObj {
   "amount": number,
   "name": string,
   "requests": string,
-  "contact": string,
-  "__v": number
+  "contact": string
 
 }
 export interface IResultOfMonth {
