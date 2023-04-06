@@ -11,8 +11,6 @@ export const EditBooking = () => {
   const navigate = useNavigate();
   const id:string = location.state.id
 
-  console.log(id);
-
   const [data, setData] = useState<IBookingsObj>({
     _id: '',
     date: '',
@@ -35,7 +33,6 @@ export const EditBooking = () => {
     e.preventDefault();
     await updateOneBooking(data);
     navigate('/day',{state:location.state.newDateString});
-    console.log(data);
   }
 
 
