@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { IBookingsObj } from "../../interfaces/interfaces";
 import {  getDayBookings } from "../../api/apiCalls";
 import './Day.scss'
+import { Navbar } from "../Navbar/Navbar";
 
 export const Day = () => {
   const navigate = useNavigate();
@@ -24,14 +25,8 @@ export const Day = () => {
 
 
   return (<div>
-      <nav className='day-navigation container'>
-        <button className=" btn btn-outline-dark  btn-lg col">MONTH</button>
-        <h2 className={'day-navigation-title col'}>{`Bookings of : ${newDateString} `}</h2>
-        <button className=" btn btn-outline-dark  btn-lg col" >NEW BOOKING</button>
-
-      </nav>
-
-
+      <Navbar />
+      <h2 className='table '>{`Bookings of : ${newDateString} `}</h2>
       <table className="table table-striped">
         <thead>
         <tr>
