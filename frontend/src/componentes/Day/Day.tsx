@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IBookingsObj } from "../../interfaces/interfaces";
 import {  getDayBookings } from "../../api/apiCalls";
-import { dateStringForm } from "../../functions/formaters";
 import './Day.scss'
 
 export const Day = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const newDateString = dateStringForm(new Date(location.state))
+  const newDateString = location.state
 
   const editBooking = (id:string) => {
-    navigate('/day/edit/',{state:id});
+    navigate('/day/edit/',{state: { id, newDateString }});
   }
 
   const [data, setData] = useState<IBookingsObj[]>()

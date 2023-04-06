@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getOneBooking, updateOneBooking } from "../../api/apiCalls";
 import { IBookingsObj } from "../../interfaces/interfaces";
 
@@ -8,7 +8,11 @@ import { IBookingsObj } from "../../interfaces/interfaces";
 
 export const EditBooking = () => {
   const location = useLocation();
-  const id:string = location.state
+  const navigate = useNavigate();
+  const id:string = location.state.id
+
+  console.log(id);
+
   const [data, setData] = useState<IBookingsObj>({
     _id: '',
     date: '',
@@ -30,6 +34,7 @@ export const EditBooking = () => {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     await updateOneBooking(data);
+    navigate('/day',{state:location.state.newDateString});
     console.log(data);
   }
 
@@ -81,8 +86,5 @@ export const EditBooking = () => {
         </div>
       </div>
     </form>
-
-
-
   </div>
 }
