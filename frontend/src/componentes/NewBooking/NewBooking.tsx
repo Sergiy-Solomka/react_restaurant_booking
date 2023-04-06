@@ -1,39 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getOneBooking, updateOneBooking } from "../../api/apiCalls";
-import { IBookingsObj } from "../../interfaces/interfaces";
+import { postNewBooking } from "../../api/apiCalls";
+import { INewBookingsObj } from "../../interfaces/interfaces";
 import { MDBInput } from 'mdb-react-ui-kit';
 import { Navigation } from "../Navigation/Navigation";
-
-
-
 
 export const NewBooking = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const id:string = location.state.id
+  const date:string = location.state.newDateString
 
-  const [data, setData] = useState<IBookingsObj>({
-    _id: '',
-    date: '',
+  const [data, setData] = useState<INewBookingsObj>({
+    date: date,
     time: '',
     amount: '',
     name: '',
     requests: '',
     contact: ''
   });
-  useEffect(() => {
-    const fetchData = async (id:string) => {
-      const data = await getOneBooking(id)
-      setData(data)
-
-    }
-    fetchData(id).then()
-  }, [id])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    await updateOneBooking(data);
+    await postNewBooking(data);
     navigate('/day',{state:location.state.newDateString});
   }
 
@@ -79,7 +67,7 @@ export const NewBooking = () => {
       </div>
       <div className="row ">
         <div className="col-sm-6 mt-4 w-50">
-          <button type="submit" id = {data?._id} className="btn btn-lg btn-outline-dark">&nbsp;&nbsp;SAVE&nbsp;&nbsp;</button>
+          <button type="submit"  className="btn btn-lg btn-outline-dark">&nbsp;&nbsp;SAVE&nbsp;&nbsp;</button>
         </div>
         <div className="col-sm-6 mt-4 w-50">
           <button type="button" className="btn btn-lg btn-outline-danger">DELETE</button>

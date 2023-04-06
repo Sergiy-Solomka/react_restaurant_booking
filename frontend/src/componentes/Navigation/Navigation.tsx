@@ -6,10 +6,14 @@ import {
   MDBContainer,
   MDBNavbarBrand, MDBNavbarItem, MDBNavbarNav, MDBCollapse, MDBNavbarToggler, MDBIcon, MDBBtn
 } from "mdb-react-ui-kit";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
 export  const Navigation =() =>{
   const [showNav, setShowNav] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const newDateString = location.state
+
 
   return (
     <MDBNavbar expand='lg' light bgColor='light'>
@@ -27,7 +31,7 @@ export  const Navigation =() =>{
           <MDBNavbarNav
             className="justify-content-end">
             <MDBNavbarItem>
-              <MDBBtn className="ms-4 me-4 mt-2 mb-2" href='/new'>ADD BOOKING</MDBBtn>
+              <MDBBtn className="ms-4 me-4 mt-2 mb-2" onClick={()=>navigate('/new',{state: { newDateString }})}>ADD BOOKING</MDBBtn>
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBBtn className="ms-1 me-1 mt-2 mb-2"  onClick={() => navigate(-1)}>
@@ -37,8 +41,6 @@ export  const Navigation =() =>{
             <MDBNavbarItem >
               <MDBBtn className="ms-1 me-1 mt-2 mb-2 " onClick={() => navigate(+1)}>NEXT</MDBBtn>
             </MDBNavbarItem>
-
-
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBContainer>
