@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { IBookingsObj } from "../../interfaces/interfaces";
 import {  getDayBookings } from "../../api/apiCalls";
 import './Day.scss'
-import { Navbar } from "../Navbar/Navbar";
+import { Navigation } from "../Navigation/Navigation";
 
 export const Day = () => {
   const navigate = useNavigate();
@@ -25,11 +25,10 @@ export const Day = () => {
 
 
   return (<div>
-      <Navbar />
-      <h2 className='table '>{`Bookings of : ${newDateString} `}</h2>
+      <Navigation />
+      {/*<h3 >{`Bookings of : ${newDateString} `}</h3>*/}
 
       <div className=" table-responsive" id="day-table">
-
       <table className="table table-striped ">
         <thead>
         <tr>

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { getOneBooking, updateOneBooking } from "../../api/apiCalls";
 import { IBookingsObj } from "../../interfaces/interfaces";
 import { MDBInput } from 'mdb-react-ui-kit';
-import { Navbar } from "../Navbar/Navbar";
+import { Navigation } from "../Navigation/Navigation";
 
 
 
@@ -39,7 +39,7 @@ export const EditBooking = () => {
 
 
   return <div>
-    <Navbar />
+    <Navigation />
     <form onSubmit={handleSubmit}>
       <div className="row ">
         <div className="col-sm-6 mt-4">
