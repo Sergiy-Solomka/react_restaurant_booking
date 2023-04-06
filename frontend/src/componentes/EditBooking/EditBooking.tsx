@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getOneBooking, updateOneBooking } from "../../api/apiCalls";
 import { IBookingsObj } from "../../interfaces/interfaces";
+import { MDBInput } from 'mdb-react-ui-kit';
 
 
 
@@ -40,36 +41,36 @@ export const EditBooking = () => {
     <form onSubmit={handleSubmit}>
       <div className="row ">
         <div className="col-sm-6 mt-4">
-          <input type="text" className="form-control" placeholder="Date" defaultValue = {data?.date}
+          <MDBInput label='Date' id='Date' type="text" className="form-control"  value = {data?.date}
                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                    setData({ ...data, date: e.target.value })} />
         </div>
         <div className="col-sm-6 mt-4">
-          <input type="text" className="form-control" placeholder="Time" defaultValue = {data?.time}
+          <MDBInput label='Time' id='Time' type="text" className="form-control"  value = {data?.time}
                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                    setData({ ...data, time: e.target.value })} />
         </div>
       </div>
       <div className="row ">
         <div className="col-sm-6  mt-4">
-          <input type="number" className="form-control" placeholder="Amount" defaultValue = {data?.amount}
+          <MDBInput label='Amount' id='Amount' type="number" className="form-control" value = {data?.amount}
                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                    setData({ ...data, amount: parseInt(e.target.value) })} />
         </div>
         <div className="col-sm-6 mt-4">
-          <input type="text" className="form-control" placeholder="Name" defaultValue = {data?.name}
+          <MDBInput label='Name' id='Name' type="text" className="form-control"  value = {data?.name}
                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setData({ ...data, name: e.target.value })} />
         </div>
       </div>
       <div className="row " >
         <div className="col-sm-6 mt-4">
-          <input type="text" className="form-control" placeholder="Contact" defaultValue = {data?.contact}
+          <MDBInput label='Contact' id='Contact' type="text" className="form-control"  value = {data?.contact}
                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                    setData({ ...data, contact: e.target.value })} />
         </div>
         <div className="col-sm-6 mt-4">
-          <input type="text" className="form-control" placeholder="Requests" defaultValue = {data?.requests}
+          <MDBInput label='Requests' id='Requests' type="text" className="form-control" value = {data?.requests}
                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                    setData({ ...data, requests: e.target.value })} />
         </div>
