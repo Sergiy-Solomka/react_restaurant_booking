@@ -28,7 +28,7 @@ export const Day = () => {
       <Navbar />
       <h2 className='table '>{`Bookings of : ${newDateString} `}</h2>
 
-      <div className=" table-responsive ">
+      <div className=" table-responsive" id="no-more-tables">
 
       <table className="table table-striped ">
         <thead>
@@ -54,7 +54,7 @@ export const Day = () => {
                 <td data-label="Name">{book.name}</td>
                 <td data-label="Requests">{book.requests}</td>
                 <td data-label="Contact">{book.contact}</td>
-                <td><button className="btn-booking" id={book._id} onClick={()=>editBooking(book._id)}>EDIT</button></td>
+                <td><button className="btn-outline-primary btn-booking" id={book._id} onClick={()=>editBooking(book._id)}>EDIT</button></td>
               </tr>
             ))
           : ''}
