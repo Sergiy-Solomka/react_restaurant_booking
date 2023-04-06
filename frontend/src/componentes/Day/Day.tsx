@@ -27,10 +27,10 @@ export const Day = () => {
   return (<div>
       <Navbar />
       <h2 className='table '>{`Bookings of : ${newDateString} `}</h2>
+
       <div className=" table-responsive ">
 
-
-      <table className="table table-striped table-responsive ">
+      <table className="table table-striped ">
         <thead>
         <tr>
           <th scope="col">DATE</th>
@@ -60,6 +60,7 @@ export const Day = () => {
           : ''}
         </tbody>
       </table>
+
       </div >
 
   </div>
