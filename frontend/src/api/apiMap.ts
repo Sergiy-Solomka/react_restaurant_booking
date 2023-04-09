@@ -6,4 +6,5 @@ export const API_MAP = {
   getOneBooking:`${BASE_API}/bookings`,
   updateOneBooking:`${BASE_API}/bookings`,
   postNewBooking:`${BASE_API}/bookings`,
+  deleteOneBooking:`${BASE_API}/bookings`,
 }

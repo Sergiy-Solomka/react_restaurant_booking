@@ -65,3 +65,13 @@ export const postNewBooking = async (data :INewBookingsObj) => {
     return null
   }
 }
+
+export const deleteOneBooking = async (id:string) => {
+  try {
+    const response: AxiosResponse = await axios.delete(`${API_MAP.getOneBooking}/${id}`)
+    return response.data
+  } catch (error) {
+    console.error(error)
+    return null
+  }
+}

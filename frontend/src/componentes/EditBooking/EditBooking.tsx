@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getOneBooking, updateOneBooking } from "../../api/apiCalls";
+import { deleteOneBooking, getOneBooking, updateOneBooking } from "../../api/apiCalls";
 import { IBookingsObj } from "../../interfaces/interfaces";
 import { MDBInput } from 'mdb-react-ui-kit';
 import { Navigation } from "../Navigation/Navigation";
@@ -31,16 +31,22 @@ export const EditBooking = () => {
     fetchData(id).then()
   }, [id])
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSave(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     await updateOneBooking(data);
+    navigate('/day',{state:location.state.newDateString});
+  }
+  async function handleDelete(e: React.MouseEvent<HTMLButtonElement>) {
+   e.preventDefault();
+    const id:string =((e.target as Element).id)
+    await deleteOneBooking(id);
     navigate('/day',{state:location.state.newDateString});
   }
 
 
   return <div>
     <Navigation />
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSave}>
       <div className="row ">
         <div className="col-sm-6 mt-4">
           <MDBInput label='Date' id='Date' type="text" className="form-control"  value = {data?.date}
@@ -82,7 +88,7 @@ export const EditBooking = () => {
           <button type="submit" id = {data?._id} className="btn btn-lg btn-outline-dark">&nbsp;&nbsp;SAVE&nbsp;&nbsp;</button>
         </div>
         <div className="col-sm-6 mt-4 w-50">
-          <button type="button" className="btn btn-lg btn-outline-danger">DELETE</button>
+          <button type="button" id = {data?._id} className="btn btn-lg btn-outline-danger" onClick={(e)=>handleDelete(e)}>DELETE</button>
         </div>
       </div>
     </form>
