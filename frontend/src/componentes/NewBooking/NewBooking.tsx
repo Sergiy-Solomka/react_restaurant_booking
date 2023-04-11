@@ -4,7 +4,6 @@ import { postNewBooking } from "../../api/apiCalls";
 import { INewBookingsObj } from "../../interfaces/interfaces";
 import { MDBInput } from "mdb-react-ui-kit";
 import { Navigation } from "../Navigation/Navigation";
-import './NewBooking.scss'
 
 export const NewBooking = () => {
   const location = useLocation();
