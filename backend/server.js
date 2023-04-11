@@ -5,103 +5,79 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
-
-app.use(express.json());
-app.use(express.static(__dirname + "/"));
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
-});
-
 const PORT = process.env.PORT || 80;
 const URL = process.env.MONGODB_URL;
+
 mongoose.connect(URL);
 
-const bookingShcema = {
+const bookingSchema = new mongoose.Schema({
   date: String,
   time: String,
   amount: Number,
   name: String,
   requests: String,
   contact: String,
-};
+});
 
-const Booking = mongoose.model("Booking", bookingShcema);
+const Booking = mongoose.model("Booking", bookingSchema);
 
-// get all bookins from DB
-app
-  .route("/bookings")
+app.use(cors());
+app.use(express.json());
+app.use(express.static(__dirname + "/"));
 
-  .get(function (req, res) {
-    Booking.find(function (err, foundBoking) {
-      if (!err) {
-        res.send(foundBoking);
-      } else {
-        res.send(err);
-      }
-    });
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.route("/bookings")
+  .get(async (req, res) => {
+    try {
+      const bookings = await Booking.find();
+      res.send(bookings);
+    } catch (err) {
+      res.status(500).send({ error: err.message });
+    }
   })
-
-  //post one booking to DB
-
-  .post(function (req, res) {
-    const newBooking = new Booking({
-      date: req.body.date,
-      time: req.body.time,
-      amount: req.body.amount,
-      name: req.body.name,
-      requests: req.body.requests,
-      contact: req.body.contact,
-    });
-
-    newBooking.save(function (err) {
-      if (!err) {
-        res.json("Booking saved");
-      } else {
-        res.json(err);
-      }
-    });
+  .post(async (req, res) => {
+    try {
+      const newBooking = new Booking(req.body);
+      await newBooking.save();
+      res.json({ message: "Booking saved" });
+    } catch (err) {
+      res.status(500).send({ error: err.message });
+    }
   });
 
-// work with one of bookings
-
-app
-  .route("/bookings/:id")
-
-  .get(function (req, res) {
-    Booking.findOne({ _id: req.params.id }, function (err, foundBooking) {
-      if (foundBooking) {
-        res.send(foundBooking);
+app.route("/bookings/:id")
+  .get(async (req, res) => {
+    try {
+      const booking = await Booking.findById(req.params.id);
+      if (booking) {
+        res.send(booking);
       } else {
-        res.send("No Matching Booking");
+        res.status(404).send({ error: "No matching booking found" });
       }
-    });
+    } catch (err) {
+      res.status(500).send({ error: err.message });
+    }
   })
-
-  .patch(function (req, res) {
-    Booking.updateOne(
-      { _id: req.params.id },
-      { $set: req.body },
-      function (err) {
-        if (!err) {
-          res.json("Updated successfully");
-        } else {
-          res.send(err);
-        }
-      }
-    );
+  .patch(async (req, res) => {
+    try {
+      await Booking.updateOne({ _id: req.params.id }, { $set: req.body });
+      res.json({ message: "Booking updated successfully" });
+    } catch (err) {
+      res.status(500).send({ error: err.message });
+    }
   })
-
-  .delete(function (req, res) {
-    Booking.findByIdAndRemove(req.params.id, function (err) {
-      if (!err) {
-        res.json("Deleted One Booking!");
-      } else {
-        res.send(err);
-      }
-    });
+  .delete(async (req, res) => {
+    try {
+      await Booking.findByIdAndRemove(req.params.id);
+      res.json({ message: "Booking deleted successfully" });
+    } catch (err) {
+      res.status(500).send({ error: err.message });
+    }
   });
 
-app.listen(PORT, function () {
+app.listen(PORT, () => {
   console.log(`Server started on port http://localhost/${PORT}`);
 });
